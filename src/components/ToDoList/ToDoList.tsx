@@ -1,4 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
+import './ToDoList.css';
 
 interface Tarefa {
     tarefa: string;
@@ -35,7 +36,7 @@ function ToDoList() {
 
     return (
         <>
-            <form onSubmit={gerarNovaTarefa}>
+            <form className='form-tarefas' onSubmit={gerarNovaTarefa}>
                 <input
                     type="text"
                     name="tarefa"
@@ -52,13 +53,16 @@ function ToDoList() {
                 />
                 <button type="submit">Enviar</button>
             </form>
+            <div className='lista-tarefas'>
             {listaDeTarefa.map((tarefa, i) => (
-                <div key={i}>
-                    <h1>{tarefa.tarefa}</h1>
-                    <h2>{tarefa.limitePrazo}</h2>
+                <div className="lista-item" key={i}>
+                    <input type="checkbox" name="finalizado" id="finalizado" />
+                    <span>{tarefa.tarefa}</span>
+                    <span>{tarefa.limitePrazo}</span>
                     <button onClick={() => removerTarefa(i)}>Remover</button>
                 </div>
             ))}
+            </div>
         </>
     );
 }
